@@ -1,5 +1,5 @@
 {
-  "name": "alma/alma-php-client",
+  "name": "si3b/alma-php-client",
   "description": "PHP API client for the Alma payments API",
   "version": "2.0.7",
   "type": "library",
