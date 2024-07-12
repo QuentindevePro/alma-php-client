@@ -49,7 +49,7 @@ class PaginatedResults implements Iterator
         $this->nextPageCb = $nextPageCb;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -64,12 +64,12 @@ class PaginatedResults implements Iterator
         return $this->position;
     }
 
-    public function next()
+    public function next(): void
     {
         ++$this->position;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->entities[$this->position]);
     }

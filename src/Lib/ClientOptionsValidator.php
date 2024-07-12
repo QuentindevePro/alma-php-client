@@ -27,8 +27,6 @@ namespace Alma\API\Lib;
 
 use Alma\API\Client;
 use Alma\API\ParamsError;
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 
 class ClientOptionsValidator
 {
@@ -61,8 +59,7 @@ class ClientOptionsValidator
                 Client::LIVE_MODE => isset($_ENV['ALMA_LIVE_API_ROOT']) ? $_ENV['ALMA_LIVE_API_ROOT'] : Client::LIVE_API_URL
             ],
             'force_tls' => 2,
-            'mode' => Client::LIVE_MODE,
-            'logger' => new NullLogger(),
+            'mode' => Client::LIVE_MODE
         ];
 
         if (isset($options['api_root'])) {
@@ -75,10 +72,6 @@ class ClientOptionsValidator
 
         if (isset($options['mode'])) {
             $config['mode'] = self::validateModeOption($options['mode']);
-        }
-
-        if (isset($options['logger'])) {
-            $config['logger'] = self::validateLoggerOption($options['logger']);
         }
 
         if (isset($options['user_agent_component'])) {
@@ -139,20 +132,6 @@ class ClientOptionsValidator
             return $mode;
         }
         throw new ParamsError('option \'mode\' is not configured properly');
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     *
-     * @return LoggerInterface
-     * @throws ParamsError
-     */
-    public static function validateLoggerOption($logger)
-    {
-        if ($logger instanceof LoggerInterface) {
-            return $logger;
-        }
-        throw new ParamsError('option \'logger\' is not configured properly');
     }
 
     /**

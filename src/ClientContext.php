@@ -25,9 +25,6 @@
 
 namespace Alma\API;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
-
 class ClientContext
 {
     /** @var string */
@@ -84,13 +81,9 @@ class ClientContext
      *
      * @return void
      */
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger($logger)
     {
-        if (!$logger) {
-            $this->logger = new NullLogger();
-        } else {
-            $this->logger = $logger;
-        }
+        // No-op
     }
 
     public function addUserAgentComponent($component, $version)
