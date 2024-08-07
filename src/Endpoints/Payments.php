@@ -70,13 +70,6 @@ class Payments extends Base
 
         if (!$serverError && ArrayUtils::isAssocArray($res->json)) {
             $result = new Eligibility($res->json, $res->responseCode);
-
-            if (!$result->isEligible()) {
-                $this->logger->info(
-                    "Eligibility check failed for following reasons: " .
-                    var_export($result->reasons, true)
-                );
-            }
         } elseif (!$serverError && is_array($res->json)) {
             $result = [];
 
@@ -87,18 +80,8 @@ class Payments extends Base
                 } else {
                     $result[$eligibility->getPlanKey()] = $eligibility;
                 }
-
-                if (!$eligibility->isEligible()) {
-                    $this->logger->info(
-                        "Eligibility check failed for following reasons: " .
-                        var_export($eligibility->reasons, true)
-                    );
-                }
             }
         } else {
-            $this->logger->info(
-                "Unexpected value from eligibility: " . var_export($res->json, true)
-            );
 
             $result = new Eligibility(array("eligible" => false), $res->responseCode);
         }
@@ -135,7 +118,6 @@ class Payments extends Base
     {
         $res = $this->request(self::PAYMENTS_PATH . "/$id/cancel")->put();
         if ($res->isError()) {
-            $this->logger->error(sprintf('An error occurred while canceling the payment %s', $id), [$res->errorMessage]);
             throw new RequestError($res->errorMessage, null, $res);
         }
     }

@@ -127,7 +127,6 @@ class Orders extends Base
                 'is_shipped' => $orderData['is_shipped'],
             ))->post();
         }catch (AlmaException $e) {
-			$this->logger->error('Error sending status');
             throw new RequestException('Error sending status', $e);
         }
 

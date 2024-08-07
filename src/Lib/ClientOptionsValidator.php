@@ -46,7 +46,6 @@ class ClientOptionsValidator
      *                                          "http://" scheme.
      *                                          Default: 2
      *              - mode                  string  'test' or 'live'. Default: 'live'
-     *              - logger                Psr\Log\LoggerInterface The logger instance to use for errors/warnings
      *              - user_agent_component  array[user_agent => version] user_agent and version should be string
      *
      * @throws ParamsError

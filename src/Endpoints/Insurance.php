@@ -193,7 +193,6 @@ class Insurance extends Base
             $this->addCustomerSessionToRequest($request, null, $cartId);
             $request->post();
         } catch (ParametersException $e) {
-            $this->logger->error('Impossible to send customer cart data', [$e->getMessage()]);
         }
     }
 

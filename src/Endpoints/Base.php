@@ -32,7 +32,6 @@ class Base
 {
     /** @var ClientContext */
     protected $clientContext;
-    protected $logger;
 
     /**
      * Base constructor.
@@ -59,6 +58,5 @@ class Base
     public function setClientContext($clientContext)
     {
         $this->clientContext = $clientContext;
-        $this->logger = $clientContext->logger;
     }
 }
