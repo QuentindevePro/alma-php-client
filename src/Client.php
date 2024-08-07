@@ -90,7 +90,6 @@ class Client
      *                                      "http://" scheme.
      *                                      Default: 2
      *              - mode      string  'test' or 'live'. Default: 'live'
-     *              - logger    Psr\Log\LoggerInterface The logger instance to use for errors/warnings
      *
      * @throws DependenciesError
      * @throws ParamsError
